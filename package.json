@@ -1,7 +1,7 @@
 {
-  "name": "testhooks",
-  "version": "0.1.170",
-  "description": "OpenAPI client for testhooks",
+  "name": "@mailslurp/test-webhooks",
+  "version": "0.1.176",
+  "description": "OpenAPI client for @mailslurp/test-webhooks",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
