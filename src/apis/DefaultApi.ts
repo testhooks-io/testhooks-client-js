@@ -48,6 +48,7 @@ export interface GetEndpointRequest {
 export interface GetEndpointHistoryRequest {
     endpointId: string;
     expectedLength?: number;
+    timeout?: number;
 }
 
 /**
@@ -164,6 +165,10 @@ export class DefaultApi extends runtime.BaseAPI {
             queryParameters['expectedLength'] = requestParameters.expectedLength;
         }
 
+        if (requestParameters.timeout !== undefined) {
+            queryParameters['timeout'] = requestParameters.timeout;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -182,6 +187,54 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getEndpointHistory(requestParameters: GetEndpointHistoryRequest): Promise<EndpointHistory> {
         const response = await this.getEndpointHistoryRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     */
+    async healthRaw(): Promise<runtime.ApiResponse<string>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/health`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.TextApiResponse(response) as any;
+    }
+
+    /**
+     */
+    async health(): Promise<string> {
+        const response = await this.healthRaw();
+        return await response.value();
+    }
+
+    /**
+     */
+    async indexRaw(): Promise<runtime.ApiResponse<string>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.TextApiResponse(response) as any;
+    }
+
+    /**
+     */
+    async index(): Promise<string> {
+        const response = await this.indexRaw();
         return await response.value();
     }
 
