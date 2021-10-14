@@ -22,16 +22,16 @@ export interface LinkedMultiValueMapStringString {
     [key: string]: Array<string> | any;
     /**
      * 
-     * @type {boolean}
-     * @memberof LinkedMultiValueMapStringString
-     */
-    empty?: boolean;
-    /**
-     * 
      * @type {{ [key: string]: string; }}
      * @memberof LinkedMultiValueMapStringString
      */
     all?: { [key: string]: string; };
+    /**
+     * 
+     * @type {boolean}
+     * @memberof LinkedMultiValueMapStringString
+     */
+    empty?: boolean;
 }
 
 export function LinkedMultiValueMapStringStringFromJSON(json: any): LinkedMultiValueMapStringString {
@@ -45,8 +45,8 @@ export function LinkedMultiValueMapStringStringFromJSONTyped(json: any, ignoreDi
     return {
         
             ...json,
-        'empty': !exists(json, 'empty') ? undefined : json['empty'],
         'all': !exists(json, 'all') ? undefined : json['all'],
+        'empty': !exists(json, 'empty') ? undefined : json['empty'],
     };
 }
 
@@ -60,8 +60,8 @@ export function LinkedMultiValueMapStringStringToJSON(value?: LinkedMultiValueMa
     return {
         
             ...value,
-        'empty': value.empty,
         'all': value.all,
+        'empty': value.empty,
     };
 }
 
