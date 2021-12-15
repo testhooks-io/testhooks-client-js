@@ -28,12 +28,6 @@ import {
 export interface EndpointResponse {
     /**
      * 
-     * @type {number}
-     * @memberof EndpointResponse
-     */
-    createdAt?: number;
-    /**
-     * 
      * @type {string}
      * @memberof EndpointResponse
      */
@@ -68,6 +62,12 @@ export interface EndpointResponse {
      * @memberof EndpointResponse
      */
     requestId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EndpointResponse
+     */
+    createdAt?: number;
 }
 
 export function EndpointResponseFromJSON(json: any): EndpointResponse {
@@ -80,13 +80,13 @@ export function EndpointResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'endpointId': !exists(json, 'endpointId') ? undefined : json['endpointId'],
         'statusCode': !exists(json, 'statusCode') ? undefined : json['statusCode'],
         'headers': !exists(json, 'headers') ? undefined : LinkedMultiValueMapStringStringFromJSON(json['headers']),
         'body': !exists(json, 'body') ? undefined : json['body'],
         'requestId': !exists(json, 'requestId') ? undefined : json['requestId'],
+        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
     };
 }
 
@@ -99,13 +99,13 @@ export function EndpointResponseToJSON(value?: EndpointResponse | null): any {
     }
     return {
         
-        'createdAt': value.createdAt,
         'id': value.id,
         'endpointId': value.endpointId,
         'statusCode': value.statusCode,
         'headers': LinkedMultiValueMapStringStringToJSON(value.headers),
         'body': value.body,
         'requestId': value.requestId,
+        'createdAt': value.createdAt,
     };
 }
 
