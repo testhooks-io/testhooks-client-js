@@ -12,4 +12,5 @@ export * from './RequestParameterRule';
 export * from './RequestParameterRules';
 export * from './RequestPattern';
 export * from './ResponseRule';
+export * from './SMSDto';
 export * from './StringRule';

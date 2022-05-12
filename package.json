@@ -1,6 +1,6 @@
 {
   "name": "@mailslurp/test-webhooks",
-  "version": "0.1.279",
+  "version": "0.1.343",
   "description": "OpenAPI client for @mailslurp/test-webhooks",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",

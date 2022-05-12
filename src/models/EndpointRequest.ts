@@ -76,10 +76,10 @@ export interface EndpointRequest {
     body?: string;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof EndpointRequest
      */
-    createdAt?: number;
+    createdAt?: Date;
 }
 
 /**
@@ -115,7 +115,7 @@ export function EndpointRequestFromJSONTyped(json: any, ignoreDiscriminator: boo
         'params': !exists(json, 'params') ? undefined : json['params'],
         'headers': !exists(json, 'headers') ? undefined : LinkedMultiValueMapStringStringFromJSON(json['headers']),
         'body': !exists(json, 'body') ? undefined : json['body'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
     };
 }
 
@@ -136,7 +136,7 @@ export function EndpointRequestToJSON(value?: EndpointRequest | null): any {
         'params': value.params,
         'headers': LinkedMultiValueMapStringStringToJSON(value.headers),
         'body': value.body,
-        'createdAt': value.createdAt,
+        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
     };
 }
 

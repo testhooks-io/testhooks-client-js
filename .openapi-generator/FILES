@@ -3,7 +3,8 @@
 .openapi-generator-ignore
 README.md
 package.json
-src/apis/DefaultApi.ts
+src/apis/EndpointControllerApi.ts
+src/apis/SmsControllerApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/CreateEndpointDto.ts
@@ -20,6 +21,7 @@ src/models/RequestParameterRule.ts
 src/models/RequestParameterRules.ts
 src/models/RequestPattern.ts
 src/models/ResponseRule.ts
+src/models/SMSDto.ts
 src/models/StringRule.ts
 src/models/index.ts
 src/runtime.ts

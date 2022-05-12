@@ -74,10 +74,10 @@ export interface EndpointRulesetDto {
     requestPatterns?: Array<RequestPattern>;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof EndpointRulesetDto
      */
-    createdAt?: number;
+    createdAt?: Date;
 }
 
 /**
@@ -108,7 +108,7 @@ export function EndpointRulesetDtoFromJSONTyped(json: any, ignoreDiscriminator: 
         'strategy': !exists(json, 'strategy') ? undefined : json['strategy'],
         'responses': !exists(json, 'responses') ? undefined : ((json['responses'] as Array<any>).map(ResponseRuleFromJSON)),
         'requestPatterns': !exists(json, 'requestPatterns') ? undefined : ((json['requestPatterns'] as Array<any>).map(RequestPatternFromJSON)),
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
     };
 }
 
@@ -128,7 +128,7 @@ export function EndpointRulesetDtoToJSON(value?: EndpointRulesetDto | null): any
         'strategy': value.strategy,
         'responses': value.responses === undefined ? undefined : ((value.responses as Array<any>).map(ResponseRuleToJSON)),
         'requestPatterns': value.requestPatterns === undefined ? undefined : ((value.requestPatterns as Array<any>).map(RequestPatternToJSON)),
-        'createdAt': value.createdAt,
+        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
     };
 }
 

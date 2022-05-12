@@ -13,84 +13,63 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    LinkedMultiValueMapStringString,
-    LinkedMultiValueMapStringStringFromJSON,
-    LinkedMultiValueMapStringStringFromJSONTyped,
-    LinkedMultiValueMapStringStringToJSON,
-} from './';
-
 /**
  * 
  * @export
- * @interface EndpointResponse
+ * @interface SMSDto
  */
-export interface EndpointResponse {
+export interface SMSDto {
     /**
      * 
      * @type {string}
-     * @memberof EndpointResponse
+     * @memberof SMSDto
      */
     id?: string;
     /**
      * 
      * @type {string}
-     * @memberof EndpointResponse
+     * @memberof SMSDto
      */
-    endpointId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof EndpointResponse
-     */
-    statusCode?: number;
-    /**
-     * 
-     * @type {LinkedMultiValueMapStringString}
-     * @memberof EndpointResponse
-     */
-    headers?: LinkedMultiValueMapStringString;
+    messageSID?: string;
     /**
      * 
      * @type {string}
-     * @memberof EndpointResponse
+     * @memberof SMSDto
      */
     body?: string;
     /**
      * 
      * @type {string}
-     * @memberof EndpointResponse
+     * @memberof SMSDto
      */
-    requestId?: string;
+    sentFrom?: string;
     /**
      * 
      * @type {Date}
-     * @memberof EndpointResponse
+     * @memberof SMSDto
      */
     createdAt?: Date;
 }
 
-export function EndpointResponseFromJSON(json: any): EndpointResponse {
-    return EndpointResponseFromJSONTyped(json, false);
+export function SMSDtoFromJSON(json: any): SMSDto {
+    return SMSDtoFromJSONTyped(json, false);
 }
 
-export function EndpointResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): EndpointResponse {
+export function SMSDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SMSDto {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'endpointId': !exists(json, 'endpointId') ? undefined : json['endpointId'],
-        'statusCode': !exists(json, 'statusCode') ? undefined : json['statusCode'],
-        'headers': !exists(json, 'headers') ? undefined : LinkedMultiValueMapStringStringFromJSON(json['headers']),
+        'messageSID': !exists(json, 'messageSID') ? undefined : json['messageSID'],
         'body': !exists(json, 'body') ? undefined : json['body'],
-        'requestId': !exists(json, 'requestId') ? undefined : json['requestId'],
+        'sentFrom': !exists(json, 'sentFrom') ? undefined : json['sentFrom'],
         'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
     };
 }
 
-export function EndpointResponseToJSON(value?: EndpointResponse | null): any {
+export function SMSDtoToJSON(value?: SMSDto | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -100,11 +79,9 @@ export function EndpointResponseToJSON(value?: EndpointResponse | null): any {
     return {
         
         'id': value.id,
-        'endpointId': value.endpointId,
-        'statusCode': value.statusCode,
-        'headers': LinkedMultiValueMapStringStringToJSON(value.headers),
+        'messageSID': value.messageSID,
         'body': value.body,
-        'requestId': value.requestId,
+        'sentFrom': value.sentFrom,
         'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
     };
 }

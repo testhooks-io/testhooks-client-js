@@ -32,16 +32,16 @@ import {
 export interface EndpointAction {
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof EndpointAction
      */
-    startTime?: number;
+    startTime?: Date;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof EndpointAction
      */
-    endTime?: number;
+    endTime?: Date;
     /**
      * 
      * @type {EndpointRequest}
@@ -66,8 +66,8 @@ export function EndpointActionFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'startTime': !exists(json, 'startTime') ? undefined : json['startTime'],
-        'endTime': !exists(json, 'endTime') ? undefined : json['endTime'],
+        'startTime': !exists(json, 'startTime') ? undefined : (new Date(json['startTime'])),
+        'endTime': !exists(json, 'endTime') ? undefined : (new Date(json['endTime'])),
         'request': !exists(json, 'request') ? undefined : EndpointRequestFromJSON(json['request']),
         'response': !exists(json, 'response') ? undefined : EndpointResponseFromJSON(json['response']),
     };
@@ -82,8 +82,8 @@ export function EndpointActionToJSON(value?: EndpointAction | null): any {
     }
     return {
         
-        'startTime': value.startTime,
-        'endTime': value.endTime,
+        'startTime': value.startTime === undefined ? undefined : (value.startTime.toISOString()),
+        'endTime': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
         'request': EndpointRequestToJSON(value.request),
         'response': EndpointResponseToJSON(value.response),
     };

@@ -51,10 +51,10 @@ export interface EndpointDto {
     path?: string;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof EndpointDto
      */
-    createdAt?: number;
+    createdAt?: Date;
 }
 
 export function EndpointDtoFromJSON(json: any): EndpointDto {
@@ -72,7 +72,7 @@ export function EndpointDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'description': !exists(json, 'description') ? undefined : json['description'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'path': !exists(json, 'path') ? undefined : json['path'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
     };
 }
 
@@ -90,7 +90,7 @@ export function EndpointDtoToJSON(value?: EndpointDto | null): any {
         'description': value.description,
         'url': value.url,
         'path': value.path,
-        'createdAt': value.createdAt,
+        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
     };
 }
 
