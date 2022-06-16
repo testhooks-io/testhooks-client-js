@@ -38,7 +38,7 @@ export interface AddEndpointRulesetRequest {
 }
 
 export interface CreateEndpointRequest {
-    createEndpointDto: CreateEndpointDto;
+    createEndpointDto?: CreateEndpointDto;
 }
 
 export interface GetEndpointRequest {
@@ -96,23 +96,18 @@ export class EndpointControllerApi extends runtime.BaseAPI {
      * Create endpoint
      */
     async createEndpointRaw(requestParameters: CreateEndpointRequest): Promise<runtime.ApiResponse<EndpointDto>> {
-        if (requestParameters.createEndpointDto === null || requestParameters.createEndpointDto === undefined) {
-            throw new runtime.RequiredError('createEndpointDto','Required parameter requestParameters.createEndpointDto was null or undefined when calling createEndpoint.');
-        }
-
         const queryParameters: any = {};
 
-        if (requestParameters.createEndpointDto !== undefined) {
-            queryParameters['createEndpointDto'] = requestParameters.createEndpointDto;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
             path: `/endpoints`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: CreateEndpointDtoToJSON(requestParameters.createEndpointDto),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => EndpointDtoFromJSON(jsonValue));
@@ -256,7 +251,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'GET',
+            method: 'OPTIONS',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -279,7 +274,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'PATCH',
+            method: 'HEAD',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -302,7 +297,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'HEAD',
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -325,7 +320,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'POST',
+            method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -348,7 +343,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'DELETE',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -371,7 +366,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'OPTIONS',
+            method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -394,7 +389,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'PUT',
+            method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
         });
