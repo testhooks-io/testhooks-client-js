@@ -279,7 +279,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'HEAD',
+            method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -302,7 +302,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'POST',
+            method: 'HEAD',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -325,7 +325,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'PATCH',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -348,7 +348,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'OPTIONS',
+            method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
         });
@@ -371,7 +371,7 @@ export class EndpointControllerApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/robots.txt`,
-            method: 'DELETE',
+            method: 'OPTIONS',
             headers: headerParameters,
             query: queryParameters,
         });

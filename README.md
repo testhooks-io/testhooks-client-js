@@ -1,4 +1,4 @@
-## @mailslurp/test-webhooks@0.1.527
+## @mailslurp/test-webhooks@0.1.534
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @mailslurp/test-webhooks@0.1.527 --save
+npm install @mailslurp/test-webhooks@0.1.534 --save
 ```
 
 _unPublished (not recommended):_
